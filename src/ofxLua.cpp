@@ -521,7 +521,11 @@ unsigned int ofxLua::tableSize() {
 		return 0;
 	}
 	
-	return lua_objlen(L, LUA_STACK_TOP);
+	#if LUA_VERSION_NUM > 501
+		return lua_rawlen(L,LUA_STACK_TOP);
+	#else
+		return lua_objlen(L,LUA_STACK_TOP);
+	#endif
 }
 
 unsigned int ofxLua::tableSize(const string& tableName) {
@@ -539,7 +543,13 @@ void ofxLua::printTable() {
 
 	if(tables.empty()) {
 		ofLogNotice("ofxLua") << "global table";
-		printTable(LUA_GLOBALSINDEX, 1);
+
+		#if LUA_VERSION_NUM > 501
+			lua_rawgeti(L,LUA_REGISTRYINDEX,LUA_RIDX_GLOBALS);
+			printTable(lua_tointeger(L,1),1);
+		#else
+			printTable(LUA_GLOBALSINDEX, 1);
+		#endif	
 		return;
 	}
 	
@@ -704,7 +714,11 @@ void ofxLua::setNil(const string& name) {
 
 	// global variable?
 	if(tables.empty()) {
-		lua_pushvalue(L, LUA_GLOBALSINDEX);
+		#if LUA_VERSION_NUM > 501
+			lua_pushglobaltable(L);
+		#else
+			lua_pushvalue(L, LUA_GLOBALSINDEX);
+		#endif
 		lua_pushnil(L);
 		lua_setfield(L, -2, name.c_str());
 		lua_pop(L, 1);
@@ -1014,8 +1028,14 @@ void ofxLua::printTable(int stackIndex, int numTabs) {
 	for(int i = 0; i < numTabs; ++i) {
 		tabs += "\t";
 	}
-	
-	bool global = (stackIndex == LUA_GLOBALSINDEX);
+
+	#if LUA_VERSION_NUM > 501
+		lua_rawgeti(L,LUA_RIDX_GLOBALS,LUA_REGISTRYINDEX);
+		bool global = (stackIndex == lua_tonumber(L,1));
+	#else
+		bool global = (stackIndex == LUA_GLOBALSINDEX);
+	#endif
+
 	lua_pushvalue(L, stackIndex); // stack: -1 => table
 	lua_pushnil(L); // stack : -2 => table; -1 => nil
 	

@@ -151,9 +151,12 @@ template <> void ofxLuaFileWriter::writetype<bool>(int type, bool value) {
 }
 
 // catch vector<bool> internal type since it isn't actually a bool
+
+#ifndef EMSCRIPTEN
 template <> void ofxLuaFileWriter::writetype<std::_Bit_reference>(int type, std::_Bit_reference value) {
 	buffer << ((bool)value ? "true" : "false");
 }
+#endif
 
 template <> void ofxLuaFileWriter::writetype<float>(int type, float value) {
 	buffer << value;
