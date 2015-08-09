@@ -37,7 +37,7 @@ cd ..\swig
 @echo NAME = %NAME%
 @echo DEST_DIR = %DEST_DIR%
 	
-swig -c++ -%LANG% -fcompact -fvirtual -I%OF_HEADERS% -DTARGET_OPENGLES -DEMSCRIPTEN -DTARGET_EMSCRIPTEN -D__EMSCRIPTEN__ -DMODULE_NAME=%MODULE_NAME% -outdir %DEST_LANG_DIR% openFrameworks.i
+swig -c++ -%LANG% -fcompact -fvirtual -I%OF_HEADERS% -DOF_SWIG_RENAME -DTARGET_OPENGLES -DEMSCRIPTEN -DTARGET_EMSCRIPTEN -D__EMSCRIPTEN__ -DMODULE_NAME=%MODULE_NAME% -outdir %DEST_LANG_DIR% openFrameworks.i
 mv openFrameworks_wrap.cxx %NAME%.cpp
 
 swig -c++ -%LANG% -external-runtime %NAME%.h

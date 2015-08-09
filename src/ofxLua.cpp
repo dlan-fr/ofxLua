@@ -1030,8 +1030,9 @@ void ofxLua::printTable(int stackIndex, int numTabs) {
 	}
 
 	#if LUA_VERSION_NUM > 501
-		lua_rawgeti(L,LUA_RIDX_GLOBALS,LUA_REGISTRYINDEX);
-		bool global = (stackIndex == lua_tonumber(L,1));
+		lua_rawgeti(L,LUA_REGISTRYINDEX,LUA_RIDX_GLOBALS);
+		bool global = (stackIndex == lua_tointeger(L,-1));
+		lua_pop(L,1);
 	#else
 		bool global = (stackIndex == LUA_GLOBALSINDEX);
 	#endif
