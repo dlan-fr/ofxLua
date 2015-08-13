@@ -3062,6 +3062,24 @@ SWIGINTERN void std_vector_Sl_std_string_Sg____setitem__(std::vector< std::strin
 				(*self)[idx]=val;
 			}
 
+#define ofImage__Sl_unsigned_SS_char_Sg__width_get(self_) self_->getWidth()
+  
+
+#define ofImage__Sl_unsigned_SS_char_Sg__height_get(self_) self_->getHeight()
+  
+
+#define ofImage__Sl_float_Sg__width_get(self_) self_->getWidth()
+  
+
+#define ofImage__Sl_float_Sg__height_get(self_) self_->getHeight()
+  
+
+#define ofImage__Sl_unsigned_SS_short_Sg__width_get(self_) self_->getWidth()
+  
+
+#define ofImage__Sl_unsigned_SS_short_Sg__height_get(self_) self_->getHeight()
+  
+
 #define ofColor__Sl_unsigned_SS_char_Sg__r_get(self_) self_->r
 #define ofColor__Sl_unsigned_SS_char_Sg__r_set(self_, val_) self_->r = val_
   
@@ -6768,6 +6786,22 @@ static int _wrap_Image_save(lua_State* L) { int argc; int argv[4]={ 1,2,3,4} ; a
   "    ofImage_< unsigned char >::save(ofBuffer &,ofImageQualityType)\n" "    ofImage_< unsigned char >::save(ofBuffer &)\n"
   "    ofImage_< unsigned char >::save(ofFile const &,ofImageQualityType)\n"
   "    ofImage_< unsigned char >::save(ofFile const &)\n"); lua_error(L);return 0; }
+static int _wrap_Image_width_get(lua_State* L) { int SWIG_arg = 0;
+  ofImage_< unsigned char > *arg1 = (ofImage_< unsigned char > *) 0 ; float result;
+  SWIG_check_num_args("ofImage_< unsigned char >::width",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< unsigned char >::width",1,"ofImage_< unsigned char > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_unsigned_char_t,0))){
+    SWIG_fail_ptr("Image_width_get",1,SWIGTYPE_p_ofImage_T_unsigned_char_t); } 
+  result = (float)ofImage__Sl_unsigned_SS_char_Sg__width_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_Image_height_get(lua_State* L) { int SWIG_arg = 0;
+  ofImage_< unsigned char > *arg1 = (ofImage_< unsigned char > *) 0 ; float result;
+  SWIG_check_num_args("ofImage_< unsigned char >::height",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< unsigned char >::height",1,"ofImage_< unsigned char > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_unsigned_char_t,0))){
+    SWIG_fail_ptr("Image_height_get",1,SWIGTYPE_p_ofImage_T_unsigned_char_t); } 
+  result = (float)ofImage__Sl_unsigned_SS_char_Sg__height_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static void swig_delete_Image(void *obj) {
 ofImage_< unsigned char > *arg1 = (ofImage_< unsigned char > *) obj;
 delete arg1;
@@ -6781,6 +6815,8 @@ static int _proxy__wrap_new_Image(lua_State *L) {
     return 1;
 }
 static swig_lua_attribute swig_Image_attributes[] = {
+    { "width", _wrap_Image_width_get, SWIG_Lua_set_immutable },
+    { "height", _wrap_Image_height_get, SWIG_Lua_set_immutable },
     {0,0,0}
 };
 static swig_lua_method swig_Image_methods[]= {
@@ -7665,6 +7701,20 @@ static int _wrap_FloatImage_save(lua_State* L) { int argc; int argv[4]={ 1,2,3,4
   "    ofImage_< float >::save(ofBuffer &,ofImageQualityType)\n" "    ofImage_< float >::save(ofBuffer &)\n"
   "    ofImage_< float >::save(ofFile const &,ofImageQualityType)\n" "    ofImage_< float >::save(ofFile const &)\n");
   lua_error(L);return 0; }
+static int _wrap_FloatImage_width_get(lua_State* L) { int SWIG_arg = 0; ofImage_< float > *arg1 = (ofImage_< float > *) 0 ;
+  float result; SWIG_check_num_args("ofImage_< float >::width",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< float >::width",1,"ofImage_< float > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_float_t,0))){
+    SWIG_fail_ptr("FloatImage_width_get",1,SWIGTYPE_p_ofImage_T_float_t); } 
+  result = (float)ofImage__Sl_float_Sg__width_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++; return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_FloatImage_height_get(lua_State* L) { int SWIG_arg = 0; ofImage_< float > *arg1 = (ofImage_< float > *) 0 ;
+  float result; SWIG_check_num_args("ofImage_< float >::height",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< float >::height",1,"ofImage_< float > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_float_t,0))){
+    SWIG_fail_ptr("FloatImage_height_get",1,SWIGTYPE_p_ofImage_T_float_t); } 
+  result = (float)ofImage__Sl_float_Sg__height_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++; return SWIG_arg;
+  if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static void swig_delete_FloatImage(void *obj) {
 ofImage_< float > *arg1 = (ofImage_< float > *) obj;
 delete arg1;
@@ -7678,6 +7728,8 @@ static int _proxy__wrap_new_FloatImage(lua_State *L) {
     return 1;
 }
 static swig_lua_attribute swig_FloatImage_attributes[] = {
+    { "width", _wrap_FloatImage_width_get, SWIG_Lua_set_immutable },
+    { "height", _wrap_FloatImage_height_get, SWIG_Lua_set_immutable },
     {0,0,0}
 };
 static swig_lua_method swig_FloatImage_methods[]= {
@@ -8612,6 +8664,22 @@ static int _wrap_ShortImage_save(lua_State* L) { int argc; int argv[4]={ 1,2,3,4
   "    ofImage_< unsigned short >::save(ofBuffer &,ofImageQualityType)\n" "    ofImage_< unsigned short >::save(ofBuffer &)\n"
   "    ofImage_< unsigned short >::save(ofFile const &,ofImageQualityType)\n"
   "    ofImage_< unsigned short >::save(ofFile const &)\n"); lua_error(L);return 0; }
+static int _wrap_ShortImage_width_get(lua_State* L) { int SWIG_arg = 0;
+  ofImage_< unsigned short > *arg1 = (ofImage_< unsigned short > *) 0 ; float result;
+  SWIG_check_num_args("ofImage_< unsigned short >::width",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< unsigned short >::width",1,"ofImage_< unsigned short > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_unsigned_short_t,0))){
+    SWIG_fail_ptr("ShortImage_width_get",1,SWIGTYPE_p_ofImage_T_unsigned_short_t); } 
+  result = (float)ofImage__Sl_unsigned_SS_short_Sg__width_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
+static int _wrap_ShortImage_height_get(lua_State* L) { int SWIG_arg = 0;
+  ofImage_< unsigned short > *arg1 = (ofImage_< unsigned short > *) 0 ; float result;
+  SWIG_check_num_args("ofImage_< unsigned short >::height",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("ofImage_< unsigned short >::height",1,"ofImage_< unsigned short > *");
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_ofImage_T_unsigned_short_t,0))){
+    SWIG_fail_ptr("ShortImage_height_get",1,SWIGTYPE_p_ofImage_T_unsigned_short_t); } 
+  result = (float)ofImage__Sl_unsigned_SS_short_Sg__height_get(arg1); lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg; if(0) SWIG_fail; fail: lua_error(L); return SWIG_arg; }
 static void swig_delete_ShortImage(void *obj) {
 ofImage_< unsigned short > *arg1 = (ofImage_< unsigned short > *) obj;
 delete arg1;
@@ -8625,6 +8693,8 @@ static int _proxy__wrap_new_ShortImage(lua_State *L) {
     return 1;
 }
 static swig_lua_attribute swig_ShortImage_attributes[] = {
+    { "width", _wrap_ShortImage_width_get, SWIG_Lua_set_immutable },
+    { "height", _wrap_ShortImage_height_get, SWIG_Lua_set_immutable },
     {0,0,0}
 };
 static swig_lua_method swig_ShortImage_methods[]= {
