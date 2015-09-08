@@ -293,9 +293,21 @@ class ofxLua {
 		///     lua_pcall(lua, 1, 0, 0);
 		///
 		bool pushobject(const string &typeName, void *object, bool manageMemory=true);
+
+
+		///set the custom lua package loader using the root directory in parameter
+		void setPackageRoot(const string& root);
 	
     protected:
 		
+		///lua custom package searcher
+		static int lua_custom_searcher(lua_State* state);
+		static int lua_custom_loader(lua_State* state,const string& module_key,const string& module_path);
+		static int checkload(lua_State *L, int stat, const string& filename);
+
+
+
+
 		/// lua stack top index
 		static const int LUA_STACK_TOP = -1;
 		
@@ -346,6 +358,7 @@ class ofxLua {
 		vector<int> indices;		//< the currently open table indices
 		ofEvent<string> errorEvent; //< error event object, string is error msg
 		string errorMessage;        //< current error message
+		static string rootPackage;
 };
 
 // TEMPLATE FUNCTIONS

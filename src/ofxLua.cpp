@@ -96,6 +96,64 @@ void ofxLua::setAbortOnError(bool abort) {
 	bAbortOnError = abort;
 }
 
+//lua custom script loading function
+int ofxLua::checkload(lua_State *L, int stat, const string& filename) {
+  if (stat) {  /* module loaded successfully? */
+    lua_pushstring(L, filename.c_str());  /* will be 2nd argument to module */
+    return 2;  /* return open function and file name */
+  }
+  else
+    return luaL_error(L, "error loading module " LUA_QS
+                         " from file " LUA_QS ":\n\t%s",
+                          lua_tostring(L, 1), filename.c_str(), lua_tostring(L, -1));
+}
+
+int ofxLua::lua_custom_loader(lua_State* state,const string& module_key,const string& module_path)
+{
+	ifstream istr(module_path, ios_base::in);
+	ofBuffer scriptBuffer(istr); 
+	istr.close();
+
+	luaL_loadbuffer(state,scriptBuffer.getData(),scriptBuffer.size(),module_key.c_str()) ;
+	return 0;
+}
+
+
+int ofxLua::lua_custom_searcher(lua_State* state)
+{
+	string module_key = (string)luaL_checkstring(state, 1);
+
+	ofFile module_file(rootPackage+module_key+".lua");
+		
+	if(!module_file.exists())
+		return 1;//1 = not found in path 
+	
+	return checkload(state, (lua_custom_loader(state, module_key, module_file.getAbsolutePath()) == 0), module_key);
+}
+
+
+
+void ofxLua::setPackageRoot(const string& root)
+{
+	ofxLua::rootPackage = root;
+
+	lua_getglobal(L,"package");
+			
+	lua_createtable(L, 1, 0);
+	lua_pushvalue(L, -2);
+	lua_pushcclosure(L, &lua_custom_searcher, 1);
+	lua_rawseti(L, -2, 1);
+	
+     #if LUA_VERSION_NUM > 501	
+	     lua_setfield(L, -2, "searchers");
+     #else
+          lua_setfield(L, -2, "loaders"); 
+     #endif
+	lua_pop(L, 1);
+
+	lua_settop(L,0);
+}
+
 //------------------------------------------------------------------------------
 bool ofxLua::doString(const string& text) {
 	
